@@ -78,15 +78,7 @@ iOS: From version 4.3
 
 Add the AdMob ANE library to your project.
 
-In Flash Professional CS6:
-
-  1. Create a new mobile project
-  2. Choose File > Publish Settings...
-  3. Select the wrench icon next to 'Script' for 'ActionScriptSettings'
-  4. Select the Library Path tab.
-  5. Click 'Browse for Native Extension(ANE) File' and select the Admob ane file.
-
-In Flash Builder 4.6:
+In Flash Builder 4.7:
 
   1. Go to Project Properties
   2. Select Native Extensions under Actionscript Build Path
