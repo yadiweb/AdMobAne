@@ -316,6 +316,40 @@ Check the Interstitial load state
 var state:Boolean = adMobManager.isInterstitialLoaded();
 ```
 
+##Listen to Events
+In order to listen to event you need to attache the event listener to the extension dispatcher.
+The easiest way is to create an internal dispatcher:
+```javascript
+/**
+ * Extension event dispatcher instance
+ **/
+private function get dispatcher():EventDispatcher
+{
+    // Return the extension dispatcher
+    return adMobManager.dispatcher;
+}
+```
+
+Then you can add all the listener for the event you need:
+```javascript
+// onBannerLoaded Event Listener
+if (!dispatcher.hasEventListener(AdMobEvent.BANNER_LOADED))
+    dispatcher.addEventListener(AdMobEvent.BANNER_LOADED, onBannerLoaded);
+
+
+/**
+ * onBannerLoaded Event listener
+ *
+ * @param e AdMobEvent Object
+ **/
+static private function onBannerLoaded(e:AdMobEvent):void
+{
+    // Do Something like show the banner...
+    adMobManager.showAllBanner();
+}
+```
+
+
 ##Setup for Android
 
 Update Your Application Descriptor
