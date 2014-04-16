@@ -318,7 +318,7 @@ var state:Boolean = adMobManager.isInterstitialLoaded();
 
 ##Listen to Events
 In order to listen to event you need to attache the event listener to the extension dispatcher.
-The easiest way is to create an internal dispatcher:
+The easiest way is to create an internal dispatcher instance:
 ```javascript
 /**
  * Extension event dispatcher instance
@@ -349,6 +349,44 @@ static private function onBannerLoaded(e:AdMobEvent):void
 }
 ```
 
+The event will also pass the banner id for the banner who did dispatch the event.
+The example above will show all the banner, if you wish to, for example, show only
+the specific banner who did dispatch the event you can do as follow:
+
+```javascript
+/**
+ * onBannerLoaded Event listener
+ *
+ * @param e AdMobEvent Object
+ **/
+static private function onBannerLoaded(e:AdMobEvent):void
+{
+    // Show the specific banner who did dispatch the event
+    // e.data:String = Banner unique ID
+    adMobManager.showBanner(e.data);
+}
+```
+
+One of the most important characteristic of Admob ANE Extension is that
+it was develop aimed to allow multiple banner instance to be used and managed while
+available in cache. For this reason all the event will always pass the Banner id s parameter.
+This include also the error Event.
+If you need to check the error events details simply set the verbose mode to "true" then all the
+details will be available in the console logs.
+
+The Extension available Event are as follow:
+```javascript
+BANNER_LOADED // The banner has been received and it is ready to be show
+BANNER_FAILED_TO_LOAD // There was an error with the banner request. most of the time, it is a wrong adMobId or missing connection
+BANNER_AD_OPENED // The banner has been clicked by the user
+BANNER_AD_CLOSED // The User left the banner destination (webpage/store) and is returning to the application
+BANNER_LEFT_APPLICATION // The banner has been remove from the application
+INTERSTITIAL_LOADED // The Interstitial has been received and it is ready to be show (iOS will be show directly)
+INTERSTITIAL_FAILED_TO_LOAD // There was an error with the Interstitial request. most of the time, it is a wrong adMobId or missing connection
+INTERSTITIAL_AD_OPENED // The Interstitial has been clicked by the user
+INTERSTITIAL_AD_CLOSED // The User left the Interstitial destination (webpage/store) and is returning to the application
+INTERSTITIAL_LEFT_APPLICATION // The Interstitial has been remove from the application (especially useful for listen when the user close the Interstitial)
+```
 
 ##Setup for Android
 
