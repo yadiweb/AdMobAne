@@ -86,6 +86,15 @@ In Flash Builder 4.7:
   4. Select Actionscript Build Packaging > Google Android, Apple IOS or Both
   5. Select the Native Extensions tab, and click the 'Package' check box next to the extension
 
+Please note:
+When adding the ANE be sure to have the checkbox "Update Air Application Descriptor" selected.
+If it is not selected make certain that the application Id is available in the Air Application Descriptor as follow:
+```xml
+<extensions>
+	<extensionID>com.codealchemy.ane.admobane</extensionID>
+</extensions>
+```
+
 ##Usage
 Import the library
 ```javascript
